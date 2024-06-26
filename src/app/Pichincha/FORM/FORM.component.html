@@ -1,0 +1,60 @@
+<div class="container my-3">
+  <form #form="ngForm">
+    <div class="form-group row">
+      <label for="id" class="col-form-label col-sm-2">ID</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="id" [(ngModel)]="lis.id" #id="ngModel" required>
+        <div *ngIf="id.invalid && (id.dirty || id.touched)" class="text-danger">
+          El campo ID es obligatorio.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="lis.nombre" #nombre="ngModel" required>
+        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="text-danger">
+          El campo Nombre es obligatorio.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="descripcion" class="col-form-label col-sm-2">Descripcion</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="descripcion" [(ngModel)]="lis.descripcion" #descripcion="ngModel" required>
+        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="text-danger">
+          El campo Descripcion es obligatorio.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="logo" class="col-form-label col-sm-2">Logo</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="logo" [(ngModel)]="lis.logo" #logo="ngModel" required>
+        <div *ngIf="logo.invalid && (logo.dirty || logo.touched)" class="text-danger">
+          El campo Logo es obligatorio.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="fechaLiberacion" class="col-form-label col-sm-2">Fecha Liberacion</label>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" id="fechaLiberacion" name="Fecha Liberacion" [(ngModel)]="lis.fechaLiberacion" #fechaLiberacion="ngModel" required (ngModelChange)="checkFechaLiberacion()">
+        <div *ngIf="fechaLiberacion.invalid && (fechaLiberacion.dirty || fechaLiberacion.touched)" class="text-danger">
+          El campo Fecha Liberacion es obligatorio.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fechaRevision" class="col-form-label col-sm-2">Fecha Revision</label>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" id="fechaRevision" name="Fecha Revision" [(ngModel)]="lis.fechaRevision" [disabled]="!fechaLiberacionSelected">
+      </div>
+    </div>
+
+    <button class="btn btn-success my-3" role="button" [disabled]="form.invalid" (click)='agregar()'>Enviar</button>
+    <button class="btn btn-secondary my-3" role="button" (click)="form.reset(); actualizar()">Reiniciar</button>
+</form>
+
+</div>
